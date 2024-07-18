@@ -25,7 +25,7 @@ const Travel = () =>{
   ])
     return(
         <>
-       
+       <div>
 
         <div className="container mx-auto flex items-center justify-between">
           <h1 className="text-2xl font-bold text-blue-700">WanderMate</h1>
@@ -44,14 +44,7 @@ const Travel = () =>{
         <div className="flex flex-wrap gap-3 pl-14 pt-10  ">
         {packages.map((travelpack,index)=>(
 
-            <div key={index} className="rounded-lg overflow-hidden shadow-black shadow-lg translate-y-8" 
-              // {
-              //   backgroundImage:'url{$travelpack.img}',
-              //   backgroundSize: 'cover',
-              //   backgroundPosition: 'center'
-
-              // }
-            >
+            <div key={index} className="rounded-lg overflow-hidden shadow-black shadow-lg translate-y-8" >
               
              
                <img src={travelpack.img} className="rounded-md"/> 
@@ -61,6 +54,7 @@ const Travel = () =>{
           ))}
             
          
+        </div>
         </div>
         </>
     )

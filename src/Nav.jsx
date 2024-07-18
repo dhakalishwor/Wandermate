@@ -22,11 +22,11 @@ return(
             </li>
 
             <li>
-                <Link to="/travel package" className="hover:text-red-500">
+                <Link to="/travelpackage" className="hover:text-red-500">
                 Travel Package</Link>
             </li>
             <li>
-                <Link to="/hotels" className="hover:text-red-500"> Hotels</Link>
+                <Link to="/hotellist" className="hover:text-red-500"> Hotels</Link>
             </li>
         </ul>
     </nav>

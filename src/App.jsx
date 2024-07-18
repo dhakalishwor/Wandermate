@@ -2,11 +2,10 @@
 
 import {BrowserRouter ,Routes,Route} from 'react-router-dom'
 
-import Signin from './Signin';
-import Signup from './Signup'
 import Home from './Home'
 import Destination from './Destination';
 import Travel from './Travel';
+import HotelList from './HotelList';
 import Hotel from './Hotel';
 
 
@@ -20,8 +19,9 @@ function App(){
     <Routes>
       <Route path='/' element ={<Home/>}></Route>
       <Route path='/destination'element={<Destination/>}></Route>
-      <Route path='/travel package' element={<Travel/>}></Route>
-      <Route path='/hotels' element={<Hotel/>}></Route>
+      <Route path='/travelpackage' element={<Travel/>}></Route>
+      <Route path='/hotellist' element={<HotelList/>}></Route>
+      <Route path='/hotellist/:id' element={<Hotel/>}> </Route>
     </Routes>
     </BrowserRouter>
     </> 
