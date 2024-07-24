@@ -1,28 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Nav from "./Nav"
+import { Link } from "react-router-dom";
 
 const Travel = () =>{
-  const[packages]=useState([
-    {
-      title:'Swimming',
-      price:'$100',
-      img:"https://tse4.mm.bing.net/th?id=OIP.3ZnAVS6zKDC17rfKR4RXcgHaE7&pid=Api&P=0&h=220"
-    },
-    {
-      title:'Gym',
-      price:'$120',
-      img:'https://tse3.mm.bing.net/th?id=OIP.iXVLf8F223lRKjmm2YsfpAHaE8&pid=Api&P=0&h=220'
-    },{
-      title:'Spa',
-      price:'$200',
-      img:'https://tse1.mm.bing.net/th?id=OIP.sJsUpukoxUE2NeFbgc-SnwHaGl&pid=Api&P=0&h=220'
-    },
-    {
-      title:'Tennis Court',
-      price:'$80',
-      img:'https://tse3.mm.bing.net/th?id=OIP.eDROArWYkpOv2d6EVBAW8gHaFj&pid=Api&P=0&h=220'
+  const[travelPackages,setPackages]=useState([]);
+  useEffect(()=>{
+    const fetchTravels= async()=>{
+      const response = await fetch('http://localhost:3000/travelPackages')
+      const data = await response.json();
+      setPackages(data);
+
     }
-  ])
+    fetchTravels();
+  })
     return(
         <>
        <div>
@@ -42,14 +32,18 @@ const Travel = () =>{
         </div>
 
         <div className="flex flex-wrap gap-3 pl-14 pt-10  ">
-        {packages.map((travelpack,index)=>(
+        {travelPackages.map((travelpackage)=>(
 
-            <div key={index} className="rounded-lg overflow-hidden shadow-black shadow-lg translate-y-8" >
+            <div key={travelpackage} className="rounded-lg overflow-hidden shadow-black shadow-lg pb-3 translate-y-8 w-64" >
               
              
-               <img src={travelpack.img} className="rounded-md"/> 
-               <h2>{travelpack.title}</h2>
-               <p>{travelpack.price}</p>
+               <img src={travelpackage.img} className="rounded-md h-40 w-full "/> 
+
+               <h2 className="text-lg">{travelpackage.name}</h2>
+               <p>{travelpackage.price}</p>
+               <p>{travelpackage.desc}</p>
+               <Link to={travelpackage.id} className="bg-green-600 text-white pb-2 pt-2 pr-2 pl-2 translate-x-28 hover:bg-green-900">Book Now</Link>
+
             </div>
           ))}
             

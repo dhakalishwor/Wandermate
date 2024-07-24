@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Nav from "./Nav"
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import StarRating from "./StarRating";
 
 const HotelList = () =>{
@@ -32,7 +32,7 @@ const HotelList = () =>{
 
         <div className=" flex flex-wrap gap-3 pl-14 pt-10 ">
         {hotels.map((hotel)=>(
-            <div key={hotel.id} className="bg-blue-100 rounded-md pl-2 w-64 shadow-black shadow-lg">
+            <div key={hotel.id} className=" rounded-md pl-2 w-64 shadow-black shadow-lg">
                 
                 <div className="relative">
                 <img src={hotel.img} className="h-40 w-full rounded pt-2 pr-2" />

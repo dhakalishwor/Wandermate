@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Nav from "./Nav";
 import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 
@@ -18,8 +17,16 @@ const Hotel = () => {
   return (
     <>
       <div>
-        <img src={hotels.img} />
-        <span><StarRating rating={hotels.rating}/></span>
+        <div className="flex justify-between">
+          <img src={hotels.img}  className="'h-40 w-64"/>
+          <div>
+            <img src={hotels.img} />
+            <img src={hotels.img} />
+          </div>
+        </div>
+        <span>
+          <StarRating rating={hotels.rating} />
+        </span>
         <h1>{hotels.name}</h1>
         <p>{hotels.desc}</p>
       </div>
