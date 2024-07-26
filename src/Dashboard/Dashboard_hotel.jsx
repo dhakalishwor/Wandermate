@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 
 const Dashboard_hotel = () => {
@@ -43,27 +41,23 @@ const Dashboard_hotel = () => {
     setShowForm(true);
   };
 
-  // const handleSaveHotel = (e) => {
-  //   e.preventDefault(); // Prevent the default form submission behavior
-  //   const newId = hotels.length ? hotels[hotels.length - 1].id + 1 : 1;
-  //   const updatedhotels = [...hotels, { ...newHotel, id: newId }];
-  //   setHotels(updatedhotels);
-  //   saveHotelsToLocalStorage(updatedhotels);
-  //   setShowForm(false);
-  //   setNewHotels({
-  //     id: "",
-  //     name: "",
-  //     price: "",
-  //     img: "",
-  //     rating: "",
-  //     freeCancellation: false,
-  //     reservation: false,
-  //     desc: "",
-  //   });
-  // };
+  const [currentHotelIndex, setCurrentHotelIndex] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEdit = (index) => {
+    setEditMode(true);
+    setShowForm(true);
+    setNewHotels(hotels[index]);
+    setCurrentHotelIndex(index);
+  };
 
   const handleSaveHotel = () => {
-    const updatedhotels = [...hotels, newHotel];
+    let updatedhotels;
+    if (editMode)
+      updatedhotels = hotels.map((hotel, index) =>
+        currentHotelIndex === index ? newHotel : hotel
+      );
+    else updatedhotels = [...hotels, newHotel];
     setHotels(updatedhotels);
     saveHotelsToLocalStorage(updatedhotels);
     setShowForm(false);
@@ -77,6 +71,15 @@ const Dashboard_hotel = () => {
       desc: "",
     });
   };
+
+  const handleDelete = (index) => {
+    let updatedList = [...hotels];
+    updatedList = updatedList.splice(index, 1);
+    setHotels(updatedList)
+    saveHotelsToLocalStorage(updatedList);
+  };
+
+ 
 
   return (
     <>
@@ -123,10 +126,20 @@ const Dashboard_hotel = () => {
                   <td className="w-1/5 py-3 px-4">{hotel.price}</td>
                   <td className="w-1/5 py-3 px-4">{hotel.desc}</td>
                   <div className="flex mt-2 mr-4">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2">
+                    <button
+                      onClick={() => {
+                        handleEdit(index);
+                      }}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
+                    >
                       Edit
                     </button>
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                    <button
+                      onClick={() => {
+                        handleDelete(index);
+                      }}
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                    >
                       Delete
                     </button>
                   </div>
